@@ -3,36 +3,40 @@ import { BookMarked, Globe2, Users, Smile } from "lucide-react";
 
 const stats = [
   {
-    value: 12400,
-    suffix: "+",
-    label: "Resources shelved",
+    value: 2,
+    suffix: "",
+    label: "Resource shelved",
+    labelPlural: "Resources shelved",
     color: "text-sage-dark",
     bg: "bg-sage/10",
     icon: BookMarked,
     iconColor: "text-sage",
   },
   {
-    value: 38,
+    value: 1,
     suffix: "",
-    label: "Countries covered",
+    label: "Country covered",
+    labelPlural: "Countries covered",
     color: "text-blush",
     bg: "bg-blush/10",
     icon: Globe2,
     iconColor: "text-blush",
   },
   {
-    value: 640,
+    value: 0,
     suffix: "",
-    label: "Active volunteers",
+    label: "Active volunteer",
+    labelPlural: "Active volunteers",
     color: "text-leaf",
     bg: "bg-leaf/10",
     icon: Users,
     iconColor: "text-leaf",
   },
   {
-    value: 91000,
-    suffix: "+",
-    label: "Students helped",
+    value: 0,
+    suffix: "",
+    label: "Student helped",
+    labelPlural: "Students helped",
     color: "text-butter",
     bg: "bg-butter/10",
     icon: Smile,
@@ -62,7 +66,7 @@ export default function Stats() {
                   <CountUp to={stat.value} suffix={stat.suffix} />
                 </p>
                 <p className="mt-1.5 font-mono text-xs uppercase tracking-[0.18em] text-ink/50">
-                  {stat.label}
+                  {stat.value === 1 ? stat.label : stat.labelPlural}
                 </p>
               </div>
             </div>
