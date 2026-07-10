@@ -141,24 +141,58 @@ interface AppContextType {
   supportTickets: SupportTicket[];
 }
 
-// All resources now come from database API - no hardcoded resources
-const initialResources: Resource[] = [];
+// Real resources — only actual files that exist in /public/resources
+const initialResources: Resource[] = [
+  {
+    id: "real-1",
+    title: "Atoms, Elements & Compounds",
+    country: "India",
+    curriculum: "CBSE",
+    grade: "Junior High School",
+    subject: "Science",
+    topic: "Atoms, Elements & Compounds",
+    description: "Handwritten notes on atomic structure, elements, and compounds — CBSE Science.",
+    fileType: "PDF",
+    uploadDate: "2026-06-01",
+    contributorName: "Volunteer",
+    downloadsCount: 0,
+    likes: 0,
+    status: "approved",
+    fileSize: "2.4 MB",
+    fileUrl: "/resources/atoms-elements-and-compounds-handwritten-notes.pdf",
+    comments: [],
+    serialNumber: 1,
+  },
+  {
+    id: "real-2",
+    title: "Force & Laws of Motion",
+    country: "India",
+    curriculum: "CBSE",
+    grade: "Junior High School",
+    subject: "Science",
+    topic: "Force & Laws of Motion",
+    description: "Notes on Newton's laws of motion — CBSE Science.",
+    fileType: "DOC",
+    uploadDate: "2026-06-03",
+    contributorName: "Volunteer",
+    downloadsCount: 0,
+    likes: 0,
+    status: "approved",
+    fileSize: "1.1 MB",
+    fileUrl: "/resources/Force-and-Laws-of-Motion.docx",
+    comments: [],
+    serialNumber: 2,
+  },
+];
 
 const initialAnnouncements: Announcement[] = [
   {
     id: "ann-1",
-    title: "Welcome to Project Astera Library!",
-    content: "Our volunteer catalog now spans 6 continents. Explore the tabs to view resources curated directly for your school curriculum.",
+    title: "Welcome to Project Astera!",
+    content: "We're just getting started. Browse our first resources and stay tuned as more get added by our volunteers.",
     date: "2026-06-01",
     type: "success"
   },
-  {
-    id: "ann-2",
-    title: "Call for Math Volunteers",
-    content: "We are currently short on high school mathematics worksheets for Canada and Australia. If you have quality materials, please upload them!",
-    date: "2026-06-10",
-    type: "info"
-  }
 ];
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -221,11 +255,10 @@ export function AppContextProvider({ children }: { children: React.ReactNode }) 
     ]
   });
 
-  // Mock site analytics
   const [analytics, setAnalytics] = useState({
-    visitorsCount: 1542,
-    activeStudents: 91400,
-    activeVolunteers: 640
+    visitorsCount: 0,
+    activeStudents: 0,
+    activeVolunteers: 0
   });
 
   const [volunteerApplications, setVolunteerApplications] = useState<VolunteerApplication[]>([]);
@@ -286,28 +319,25 @@ export function AppContextProvider({ children }: { children: React.ReactNode }) 
     if (cachedVolApps) setVolunteerApplications(JSON.parse(cachedVolApps));
     if (cachedPartnerReqs) setPartnerRequests(JSON.parse(cachedPartnerReqs));
 
-    // Fetch resources from API - ONLY database resources, no hardcoded fallback
+    // Fetch resources from API, fall back to sample data if DB not available
     const fetchResources = async () => {
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
         
         const response = await fetch("/api/resources", { signal: controller.signal });
         clearTimeout(timeoutId);
         
         const data = await response.json();
-        if (data.resources && Array.isArray(data.resources)) {
-          // Use only actual database resources
+        if (data.resources && Array.isArray(data.resources) && data.resources.length > 0) {
+          // Real DB data — use it
           setResources(data.resources);
           saveToLocal("astera_resources", data.resources);
-        } else {
-          // If API returns no resources, show empty (no fallback)
-          setResources([]);
         }
+        // If empty array returned, keep initialResources (sample data)
       } catch (error) {
-        console.warn("Failed to fetch resources from API", error);
-        // On error, show empty - user can still see other parts of app
-        setResources([]);
+        console.warn("Failed to fetch resources from API, using sample data", error);
+        // Keep initialResources — no DB connected locally
       }
     };
 

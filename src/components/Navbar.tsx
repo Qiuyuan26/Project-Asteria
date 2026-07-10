@@ -8,7 +8,8 @@ import { useRouter, usePathname } from "next/navigation";
 import NotificationBell from "@/components/NotificationBell";
 
 const navLinks = [
-  { label: "Explore", href: "/explore" },
+  { label: "Resources", href: "/explore" },
+  { label: "Events", href: "/events" },
   { label: "Volunteer", href: "/volunteer-apply" },
   { label: "About", href: "/about" },
 ];

@@ -12,9 +12,10 @@ export default function Footer() {
     {
       title: "Library",
       links: [
-        { label: "Explore resources", href: "/explore", show: true },
+        { label: "Browse resources", href: "/explore", show: true },
         { label: "Browse by country", href: "/explore?focus=country", show: true },
         { label: "Browse by subject", href: "/explore?focus=subject", show: true },
+        { label: "Events", href: "/events", show: true },
         { label: "Submit a resource", href: user?.role === "admin" ? "/dashboard/admin?tab=upload" : "/dashboard/volunteer", show: user?.role === "volunteer" || user?.role === "admin" },
       ].filter(l => l.show),
     },
