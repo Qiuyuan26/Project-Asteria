@@ -1,0 +1,16 @@
+{
+  "hero": [
+    { "id": "s1", "label": "pink donut (behind heading)", "top": "-2%", "left": "-2%", "width": "130px", "zIndex": 0 },
+    { "id": "s2", "label": "bow on button 1", "top": "-14px", "left": "4px", "width": "28px", "zIndex": 10 },
+    { "id": "s0", "label": "tulip illustration (right side)", "top": "0%", "left": "0%", "width": "380px", "zIndex": 5 }
+  ],
+  "about": [
+    { "id": "s5",  "label": "bunny (left)",             "top": "50%",  "left": "2%",   "width": "180px", "translateY": "-50%" },
+    { "id": "s16", "label": "candy wrap (bottom left)",  "top": "auto", "left": "8%",   "bottom": "2%",   "width": "140px" },
+    { "id": "s10", "label": "peach (top right)",         "top": "5%",   "right": "10%", "width": "90px"  },
+    { "id": "s7",  "label": "milk bottle (right)",       "top": "22%",  "right": "4%",  "width": "60px"  },
+    { "id": "s8",  "label": "strawberry (right middle)", "top": "38%",  "right": "14%", "width": "70px"  },
+    { "id": "s4",  "label": "perfume bottle (right low)","top": "auto", "right": "5%",  "bottom": "28%",  "width": "65px"  },
+    { "id": "s9",  "label": "pink flower (bottom right)","top": "auto", "right": "1%",  "bottom": "0%",   "width": "160px" }
+  ]
+}
