@@ -51,12 +51,12 @@ const handleDownload = (e: React.MouseEvent, res: Resource) => {
   return (
     <>
       <ToastContainer toasts={toasts} removeToast={removeToast} />
-      <section id="explore" className="px-6 py-20 lg:px-10 font-body">
+      <section id="explore" className="bg-[#f7f4ed] px-6 py-20 lg:px-10 font-body">
         <div className="mx-auto max-w-7xl">
           {/* Section header */}
           <div className="reveal flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-sage">
+              <p className="font-body text-xs font-light uppercase tracking-[0.2em] text-sage">
                 From the shelves
               </p>
               <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight text-sage-dark sm:text-5xl">
@@ -65,7 +65,7 @@ const handleDownload = (e: React.MouseEvent, res: Resource) => {
             </div>
             <Link
               href="/explore"
-              className="group flex items-center gap-2 text-sm font-semibold text-sage-dark transition-colors hover:text-sage"
+              className="group flex items-center gap-2 font-body text-sm font-bold text-sage-dark transition-colors hover:text-sage"
             >
               Browse all resources
               <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />

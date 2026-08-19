@@ -8,10 +8,11 @@ import { useRouter, usePathname } from "next/navigation";
 import NotificationBell from "@/components/NotificationBell";
 
 const navLinks = [
-  { label: "Resources", href: "/explore" },
-  { label: "Events", href: "/events" },
-  { label: "Volunteer", href: "/volunteer-apply" },
   { label: "About", href: "/about" },
+  { label: "Initiatives", href: "/#initiatives" },
+  { label: "Events", href: "/events" },
+  { label: "Resources", href: "/explore" },
+  { label: "Volunteer", href: "/volunteer-apply" },
 ];
 
 export default function Navbar() {
@@ -53,20 +54,24 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-sage-dark/10 bg-cream/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-sage-dark/10 bg-[#8fb08a] backdrop-blur-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <Link
           href="/"
           className="group flex items-center gap-2.5"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-card bg-sage text-paper transition-transform duration-300 group-hover:rotate-6">
-            <BookOpen size={18} strokeWidth={2.25} />
-          </span>
-          <span className="font-display text-xl font-semibold tracking-tight text-sage-dark">
-            Project Astera
+          <span className="flex flex-col">
+            <span className="font-display text-xl font-bold tracking-tight text-sage-dark">
+              Project_Astera
+            </span>
+            <span className="ml-3 mt-1 text-[11px] font-medium tracking-[0.12em] text-sage-dark/60">
+              Turning Sparks 
+            </span>
+            <span className="mt-1 text-[11px] font-medium tracking-[0.12em] text-sage-dark/60">
+              Into Constellations
+            </span>
           </span>
         </Link>
-
         {/* Desktop Links */}
         <div className="hidden items-center gap-8 md:flex">
           {/* Home link for guests navigating away from homepage */}
@@ -104,7 +109,7 @@ export default function Navbar() {
               <NotificationBell userId={user.id} />
               <Link
                 href={getDashboardHref()}
-                className="flex items-center gap-1.5 text-sm font-semibold text-sage-dark transition-colors hover:text-sage"
+                className="flex items-center gap-1.5 text-sm font-semibold transition-colors hover:text-sage"
               >
                 <UserIcon size={15} />
                 <span>Dashboard ({user.name})</span>
@@ -122,15 +127,9 @@ export default function Navbar() {
             <>
               <Link
                 href="/login"
-                className="text-sm font-semibold text-sage-dark transition-colors hover:text-sage"
+                className="rounded-card bg-[#ffbedd] px-10 py-2.5 text-sm font-medium shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
               >
-                Log in
-              </Link>
-              <Link
-                href="/explore"
-                className="rounded-card bg-sage-dark px-4 py-2.5 text-sm font-semibold text-paper shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
-              >
-                Explore resources
+                Join Astera
               </Link>
             </>
           )}
@@ -156,7 +155,7 @@ export default function Navbar() {
         }`}
         aria-hidden={!open}
       >
-        <div className="border-t border-sage-dark/10 bg-paper px-6 py-5">
+        <div className="border-t border-sage-dark/10 bg-[#ffbedd] px-6 py-5">
           <div className="flex flex-col gap-4">
             {/* Home link for guests */}
             {showHomeLink && (
@@ -217,16 +216,9 @@ export default function Navbar() {
                   <Link
                     href="/login"
                     onClick={() => setOpen(false)}
-                    className="text-sm font-semibold text-sage-dark"
+                    className="rounded-card bg-[#ffbedd] px-10 py-2.5 text-center text-sm font-medium text-sage-dark shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
                   >
-                    Log in
-                  </Link>
-                  <Link
-                    href="/explore"
-                    onClick={() => setOpen(false)}
-                    className="rounded-card bg-sage-dark px-4 py-2.5 text-center text-sm font-semibold text-paper"
-                  >
-                    Explore resources
+                    Join Astera
                   </Link>
                 </>
               )}

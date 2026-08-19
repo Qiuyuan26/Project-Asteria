@@ -31,8 +31,8 @@ const config: Config = {
         ink: "#2E3B36",
       },
       fontFamily: {
-        display: ["var(--font-fraunces)", "serif"],
-        body: ["var(--font-inter)", "sans-serif"],
+        display: ["var(--font-display)", "serif"],
+        body: ["var(--font-body)", "sans-serif"],
         mono: ["var(--font-mono)", "monospace"],
       },
       borderRadius: {

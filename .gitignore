@@ -41,3 +41,12 @@ next-env.d.ts
 
 # prisma generated files
 /src/generated/prisma
+
+# Local build/generated files
+.next/
+tsconfig.tsbuildinfo
+
+
+# Local uploaded files
+public/uploads/
+

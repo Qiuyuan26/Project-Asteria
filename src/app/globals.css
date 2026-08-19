@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+  font-family: "the-seasons";
+  src: url("/fonts/The Seasons Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
 :root {
-  --font-fraunces: "Fraunces", serif;
-  --font-inter: "Inter", -apple-system, sans-serif;
+  --font-display: "The Seasons", serif;
+  --font-body: "Inter", -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 }
 
