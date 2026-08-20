@@ -34,6 +34,8 @@ const config: Config = {
         display: ["var(--font-display)", "serif"],
         body: ["var(--font-body)", "sans-serif"],
         mono: ["var(--font-mono)", "monospace"],
+        seasons: ["var(--font-seasons)", "serif"],
+        montserrat: ["var(--font-montserrat)", "sans-serif"],
       },
       borderRadius: {
         card: "0.875rem",

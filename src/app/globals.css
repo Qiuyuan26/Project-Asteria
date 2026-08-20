@@ -5,15 +5,33 @@
 
 @font-face {
   font-family: "the-seasons";
-  src: url("/fonts/The Seasons Bold.ttf") format("truetype");
+  src: url("/fonts/Fontspring-DEMO-theseasons-reg.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "the-seasons";
+  src: url("/fonts/Fontspring-DEMO-theseasons-lt.otf") format("opentype");
   font-style: normal;
   font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "the-seasons";
+  src: url("/fonts/Fontspring-DEMO-theseasons-bd.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
   font-display: swap;
 }
 :root {
   --font-display: "The Seasons", serif;
   --font-body: "Inter", -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
+  --font-seasons: "the-seasons", serif;
+  --font-montserrat: "Montserrat", sans-serif;
 }
 
 * {
