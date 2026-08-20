@@ -1,18 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { BookOpen, Menu, X, LogOut, User as UserIcon, Home } from "lucide-react";
+import { Menu, X, LogOut, User as UserIcon, Home } from "lucide-react";
 import { useApp } from "@/context/AppContext";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import NotificationBell from "@/components/NotificationBell";
 
 const navLinks = [
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Initiatives", href: "/#initiatives" },
+  { label: "Initiatives", href: "/explore" },
   { label: "Events", href: "/events" },
   { label: "Resources", href: "/explore" },
-  { label: "Volunteer", href: "/volunteer-apply" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -54,26 +55,20 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-sage-dark/10 bg-[#8fb08a] backdrop-blur-md">
+    <header className="absolute left-0 top-0 z-50 w-full">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <Link
           href="/"
-          className="group flex items-center gap-2.5"
+          className="group flex flex-col items-center leading-none"
         >
-          <span className="flex flex-col">
-            <span className="font-display text-xl font-bold tracking-tight text-sage-dark">
-              Project_Astera
-            </span>
-            <span className="ml-3 mt-1 text-[11px] font-medium tracking-[0.12em] text-sage-dark/60">
-              Turning Sparks 
-            </span>
-            <span className="mt-1 text-[11px] font-medium tracking-[0.12em] text-sage-dark/60">
-              Into Constellations
-            </span>
+          <span className="font-seasons text-[1.55rem] text-[#26332d]">
+            Project Astera
           </span>
+          <span className="font-seasons text-[0.74rem] text-[#26332d]">Turning Sparks</span>
+          <span className="font-seasons text-[0.74rem] text-[#26332d]">Into Constellations</span>
         </Link>
         {/* Desktop Links */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-10 md:flex">
           {/* Home link for guests navigating away from homepage */}
           {showHomeLink && (
             <Link
@@ -93,13 +88,6 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <a
-            href="/#how-it-works"
-            onClick={(e) => handleHowItWorks(e)}
-            className="link-sweep text-sm font-medium text-ink/70 transition-colors hover:text-sage-dark cursor-pointer"
-          >
-            How it works
-          </a>
         </div>
 
         {/* Desktop Buttons */}
@@ -126,8 +114,8 @@ export default function Navbar() {
           ) : (
             <>
               <Link
-                href="/login"
-                className="rounded-card bg-[#ffbedd] px-10 py-2.5 text-sm font-medium shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
+                href="/volunteer-apply"
+                className="rounded-full bg-[#f7afd0] px-7 py-3 text-base text-[#202a27] shadow-sm transition-transform hover:-translate-y-0.5"
               >
                 Join Astera
               </Link>
