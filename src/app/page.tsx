@@ -4,6 +4,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FeaturedShelf from "@/components/FeaturedShelf";
 import StickerLayer from "@/components/StickerLayer";
+import NewHero from "@/components/NewHero";
+import NewAbout from "@/components/NewAbout";
+import NewImpact from "@/components/NewImpact";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
@@ -14,20 +17,13 @@ export default function Home() {
     <main className="min-h-screen flex flex-col" style={{ fontFamily: "'Montserrat', sans-serif" }}>
       <Navbar />
 
-      {/* ══════════════════════════════════════════════════════════
-          HERO
-          - bg: #bacdaf (sage green)
-          - blob: darker green shape top-right corner
-          - LEFT: pink donut sticker (s1) overlapping behind heading
-                  big heading "Turning Sparks / Into Constellations"
-                  subtitle paragraph
-                  2 pill buttons: pink bg + white bg, each with tiny bow (s2) top-left
-          - RIGHT: tulip illustration (s0) centered
-      ══════════════════════════════════════════════════════════ */}
-      <section
-        className="relative overflow-hidden"
-        style={{ backgroundColor: "#bacdaf" }}
-      >
+      <NewHero />
+      <NewAbout />
+      <NewImpact />
+
+      {/* Education, resources, CTA, and footer sections below are kept intact. */}
+      <div className="hidden">
+      <section className="relative overflow-hidden" style={{ backgroundColor: "#bacdaf" }}>
         {/* Blob — darker organic shape top-right */}
         <div
           className="absolute top-0 right-0 w-48 h-56 pointer-events-none"
@@ -214,6 +210,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+      </div>
 
       {/* ══════════════════════════════════════════════════════════
           EDUCATION WITHOUT BORDERS
