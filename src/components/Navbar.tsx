@@ -1,19 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, LogOut, User as UserIcon } from "lucide-react";
+import { BookOpen, Menu, X, LogOut, User as UserIcon, Home } from "lucide-react";
 import { useApp } from "@/context/AppContext";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import NotificationBell from "@/components/NotificationBell";
 
 const navLinks = [
-  { label: "Home",        href: "/" },
-  { label: "About",       href: "/about" },
-  { label: "Initiatives", href: "/initiatives" },
-  { label: "Events",      href: "/events" },
-  { label: "Resources",   href: "/explore" },
-  { label: "Contact",     href: "/contact" },
+  { label: "About", href: "/about" },
+  { label: "Initiatives", href: "/#initiatives" },
+  { label: "Events", href: "/events" },
+  { label: "Resources", href: "/explore" },
+  { label: "Volunteer", href: "/volunteer-apply" },
 ];
 
 export default function Navbar() {
@@ -22,63 +21,113 @@ export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleLogout = () => { logout(); router.push("/"); };
-  const getDashboardHref = () => !user ? "/login" : `/dashboard/${user.role}`;
+  // Show Home link for guests when they are NOT on the homepage
+  const isGuest = !user;
+  const showHomeLink = isGuest && pathname !== "/";
+
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
+
+  const getDashboardHref = () => {
+    if (!user) return "/login";
+    return `/dashboard/${user.role}`;
+  };
+
+  const visibleLinks = navLinks.filter(link => {
+    if (user?.role === "admin" && link.label === "Volunteer") return false;
+    return true;
+  });
+
+  // Smooth scroll to #how-it-works from any page
+  const handleHowItWorks = (e: React.MouseEvent, closeMobile?: () => void) => {
+    e.preventDefault();
+    if (closeMobile) closeMobile();
+    if (pathname === "/") {
+      // Already on homepage — just scroll
+      document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Navigate to homepage then scroll after load
+      router.push("/#how-it-works");
+    }
+  };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10">
-
-        {/* Logo */}
-        <Link href="/" className="flex flex-col leading-tight shrink-0">
-          <span style={{ fontFamily: "'The Seasons', Georgia, serif", fontSize: "1rem", color: "#2e3a32" }}>
-            Project_Astera
-          </span>
-          <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "9px", color: "rgba(46,58,50,0.5)", lineHeight: "1.3" }}>
-            Turning Sparks<br />Into Constellations
+    <header className="sticky top-0 z-50 border-b border-sage-dark/10 bg-[#8fb08a] backdrop-blur-md">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+        <Link
+          href="/"
+          className="group flex items-center gap-2.5"
+        >
+          <span className="flex flex-col">
+            <span className="font-display text-xl font-bold tracking-tight text-sage-dark">
+              Project_Astera
+            </span>
+            <span className="ml-3 mt-1 text-[11px] font-medium tracking-[0.12em] text-sage-dark/60">
+              Turning Sparks 
+            </span>
+            <span className="mt-1 text-[11px] font-medium tracking-[0.12em] text-sage-dark/60">
+              Into Constellations
+            </span>
           </span>
         </Link>
-
-        {/* Desktop links */}
-        <div className="hidden items-center gap-7 md:flex">
-          {navLinks.map((link) => (
+        {/* Desktop Links */}
+        <div className="hidden items-center gap-8 md:flex">
+          {/* Home link for guests navigating away from homepage */}
+          {showHomeLink && (
+            <Link
+              href="/"
+              className="flex items-center gap-1.5 text-sm font-medium text-ink/70 transition-colors hover:text-sage-dark"
+            >
+              <Home size={14} />
+              Home
+            </Link>
+          )}
+          {visibleLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: "13px",
-                color: pathname === link.href ? "#2e3a32" : "rgba(46,58,50,0.6)",
-                textDecoration: pathname === link.href ? "underline" : "none",
-                textUnderlineOffset: "4px",
-              }}
+              className="link-sweep text-sm font-medium text-ink/70 transition-colors hover:text-sage-dark"
             >
               {link.label}
             </Link>
           ))}
+          <a
+            href="/#how-it-works"
+            onClick={(e) => handleHowItWorks(e)}
+            className="link-sweep text-sm font-medium text-ink/70 transition-colors hover:text-sage-dark cursor-pointer"
+          >
+            How it works
+          </a>
         </div>
 
-        {/* Right */}
-        <div className="hidden items-center gap-3 md:flex shrink-0">
+        {/* Desktop Buttons */}
+        <div className="hidden items-center gap-4 md:flex">
           {user ? (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <NotificationBell userId={user.id} />
-              <Link href={getDashboardHref()} style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "13px", fontWeight: 600, color: "#2e3a32" }}>
-                <UserIcon size={13} className="inline mr-1" />{user.name}
+              <Link
+                href={getDashboardHref()}
+                className="flex items-center gap-1.5 text-sm font-semibold transition-colors hover:text-sage"
+              >
+                <UserIcon size={15} />
+                <span>Dashboard ({user.name})</span>
               </Link>
-              <button onClick={handleLogout} className="text-rose-400 hover:text-rose-600">
-                <LogOut size={13} />
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-1 text-sm font-medium text-rose-600 transition-colors hover:text-rose-800"
+                title="Log out"
+              >
+                <LogOut size={15} />
+                <span>Log out</span>
               </button>
             </div>
           ) : (
             <>
-              <Link href="/login" style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "13px", color: "rgba(46,58,50,0.55)" }}>
-                Log in
-              </Link>
               <Link
-                href="/volunteer-apply"
-                className="rounded-full px-6 py-2 hover:opacity-85 transition-opacity"
-                style={{ backgroundColor: "#ffbedd", fontFamily: "'Montserrat', sans-serif", fontSize: "13px", fontWeight: 600, color: "#2e3a32" }}
+                href="/login"
+                className="rounded-card bg-[#ffbedd] px-10 py-2.5 text-sm font-medium shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
               >
                 Join Astera
               </Link>
@@ -86,39 +135,94 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Mobile toggle */}
-        <button className="md:hidden p-2" style={{ color: "#2e3a32" }} onClick={() => setOpen(!open)}>
-          {open ? <X size={20} /> : <Menu size={20} />}
+        {/* Mobile Toggle */}
+        <button
+          className="flex h-10 w-10 items-center justify-center rounded-card text-sage-dark transition-all duration-200 hover:bg-sage-dark/5 md:hidden"
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+        >
+          <span className={`flex transition-transform duration-300 ${open ? "rotate-90" : "rotate-0"}`}>
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </span>
         </button>
       </nav>
 
-      {/* Mobile drawer */}
-      <div className={`overflow-hidden transition-all duration-300 md:hidden ${open ? "max-h-screen" : "max-h-0"}`}>
-        <div className="bg-white border-t border-gray-100 px-6 py-5 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <Link key={link.label} href={link.href} onClick={() => setOpen(false)}
-              style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "14px", color: "rgba(46,58,50,0.7)" }}>
-              {link.label}
-            </Link>
-          ))}
-          <div className="border-t border-gray-100 pt-4 flex flex-col gap-3">
-            {user ? (
-              <>
-                <Link href={getDashboardHref()} onClick={() => setOpen(false)} style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 600, color: "#2e3a32" }}>
-                  Dashboard ({user.name})
-                </Link>
-                <button onClick={() => { setOpen(false); handleLogout(); }} className="text-left text-sm text-rose-400">Log out</button>
-              </>
-            ) : (
-              <>
-                <Link href="/login" onClick={() => setOpen(false)} style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "13px", color: "rgba(46,58,50,0.55)" }}>Log in</Link>
-                <Link href="/volunteer-apply" onClick={() => setOpen(false)}
-                  className="rounded-full py-2.5 text-center hover:opacity-85 transition-opacity"
-                  style={{ backgroundColor: "#ffbedd", fontFamily: "'Montserrat', sans-serif", fontWeight: 600, color: "#2e3a32" }}>
-                  Join Astera
-                </Link>
-              </>
+      {/* Mobile Drawer — animated slide-down */}
+      <div
+        className={`overflow-hidden transition-all duration-300 ease-out md:hidden ${
+          open ? "max-h-screen opacity-100 pointer-events-auto" : "max-h-0 opacity-0 pointer-events-none"
+        }`}
+        aria-hidden={!open}
+      >
+        <div className="border-t border-sage-dark/10 bg-[#ffbedd] px-6 py-5">
+          <div className="flex flex-col gap-4">
+            {/* Home link for guests */}
+            {showHomeLink && (
+              <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2 text-sm font-semibold text-sage-dark transition-colors hover:text-sage"
+              >
+                <Home size={14} />
+                Home
+              </Link>
             )}
+            {visibleLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="link-sweep text-sm font-medium text-ink/80 transition-colors hover:text-sage-dark"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href="/#how-it-works"
+              onClick={(e) => handleHowItWorks(e, () => setOpen(false))}
+              className="link-sweep text-sm font-medium text-ink/80 transition-colors hover:text-sage-dark cursor-pointer"
+            >
+              How it works
+            </a>
+            <div className="mt-2 flex flex-col gap-3 border-t border-sage-dark/10 pt-4">
+              {user ? (
+                <>
+                  <div className="flex items-center gap-2">
+                    <NotificationBell userId={user.id} />
+                    <span className="text-xs text-ink/40">Notifications</span>
+                  </div>
+                  <Link
+                    href={getDashboardHref()}
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-1.5 text-sm font-semibold text-sage-dark"
+                  >
+                    <UserIcon size={15} />
+                    <span>My Dashboard ({user.name})</span>
+                  </Link>
+                  <button
+                    onClick={() => {
+                      setOpen(false);
+                      handleLogout();
+                    }}
+                    className="flex items-center gap-1 text-left text-sm font-medium text-rose-600"
+                  >
+                    <LogOut size={15} />
+                    <span>Log out</span>
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    onClick={() => setOpen(false)}
+                    className="rounded-card bg-[#ffbedd] px-10 py-2.5 text-center text-sm font-medium text-sage-dark shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
+                  >
+                    Join Astera
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
