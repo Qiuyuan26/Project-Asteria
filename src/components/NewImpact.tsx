@@ -11,7 +11,7 @@ const stats = [
 
 function Stat({ value, suffix, label }: { value: number; suffix: string; label: string }) {
   return (
-    <div className="flex h-[245px] flex-col items-center justify-center border-r border-[#e7dfe1] px-4 text-center last:border-r-0">
+    <div className="flex h-[180px] flex-col items-center justify-center border-b border-[#e7dfe1] px-4 text-center last:border-b-0 sm:h-[210px] sm:border-b-0 sm:border-r last:border-r-0 lg:h-[245px]">
       <div className="font-seasons text-[5.1rem] leading-none text-[#2e3a32]">
         <CountUp to={value} suffix={suffix} className="inline-block" />
       </div>

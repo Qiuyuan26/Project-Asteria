@@ -4,9 +4,9 @@ import Link from "next/link";
 
 export default function NewHero() {
   return (
-    <section className="relative min-h-[780px] overflow-hidden bg-[#b7cbaa] text-[#202a27] lg:h-screen lg:min-h-[700px]">
+    <section className="relative min-h-[980px] overflow-hidden bg-[#b7cbaa] text-[#202a27] sm:min-h-[900px] lg:h-screen lg:min-h-[700px]">
       <img src="/stickers/darkgreenshape.png" alt="" aria-hidden className="pointer-events-none absolute right-0 top-0 z-0 w-[13.5%] min-w-[150px]" />
-      <div className="relative z-10 mx-auto flex min-h-[780px] max-w-[982px] flex-col items-start justify-center px-6 pb-24 pt-32 lg:h-screen lg:min-h-[700px] lg:flex-row lg:items-center lg:px-0 lg:pb-0 lg:pt-0">
+      <div className="relative z-10 mx-auto flex min-h-[980px] max-w-[982px] flex-col items-start justify-start px-6 pb-24 pt-36 sm:min-h-[900px] sm:pt-32 lg:h-screen lg:min-h-[700px] lg:flex-row lg:items-center lg:justify-center lg:px-0 lg:pb-0 lg:pt-0">
         <div className="relative mt-0 w-full lg:-translate-x-20 lg:mt-8 lg:w-[64%]">
           <img src="/stickers/mp4.png" alt="" aria-hidden className="pointer-events-none absolute -left-8 top-0 z-0 w-[145px]" />
           <h1 className="relative z-10 max-w-[680px] font-seasons text-[2.65rem] leading-[1.04] text-[#202a27] sm:text-[4.35rem] lg:text-[5.2rem]">
@@ -38,7 +38,7 @@ export default function NewHero() {
           </div>
         </div>
 
-        <img src="/stickers/Website%20Prototype.png" alt="" aria-hidden className="pointer-events-none relative mt-8 w-[270px] self-center lg:absolute lg:left-[75%] lg:top-[11%] lg:mt-0 lg:w-[500px] lg:max-w-[44vw]" />
+        <img src="/stickers/Website%20Prototype.png" alt="" aria-hidden className="pointer-events-none relative mt-16 w-[270px] self-center sm:mt-12 lg:absolute lg:left-[75%] lg:top-[11%] lg:mt-0 lg:w-[500px] lg:max-w-[44vw]" />
       </div>
 
       <img src="/stickers/Website%20Prototype%20(4).png" alt="" aria-hidden className="pointer-events-none absolute bottom-[-10px] left-[-22px] z-[3] w-[150px] sm:w-[178px]" />
