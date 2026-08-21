@@ -9,12 +9,12 @@ export default function NewHero() {
       <div className="relative z-10 mx-auto flex min-h-[780px] max-w-[982px] flex-col items-start justify-center px-6 pb-24 pt-32 lg:h-screen lg:min-h-[700px] lg:flex-row lg:items-center lg:px-0 lg:pb-0 lg:pt-0">
         <div className="relative mt-0 w-full lg:-translate-x-20 lg:mt-8 lg:w-[64%]">
           <img src="/stickers/mp4.png" alt="" aria-hidden className="pointer-events-none absolute -left-8 top-0 z-0 w-[145px]" />
-          <h1 className="relative z-10 font-seasons text-[3.35rem] leading-[1.02] text-[#202a27] sm:text-[4.35rem] lg:text-[5.2rem]">
+          <h1 className="relative z-10 max-w-[680px] font-seasons text-[2.65rem] leading-[1.04] text-[#202a27] sm:text-[4.35rem] lg:text-[5.2rem]">
             <span className="block lg:whitespace-nowrap">Turning Sparks</span>
             <span className="block lg:whitespace-nowrap">Into Constellations</span>
           </h1>
 
-          <p className="font-montserrat mt-6 max-w-[530px] text-[1.05rem] leading-[1.35] text-[#202a27] sm:text-[1.35rem] lg:mt-7">
+          <p className="font-montserrat mt-6 max-w-[530px] text-[0.98rem] leading-[1.4] text-[#202a27] sm:text-[1.35rem] lg:mt-7">
             Astera empowers young people to create meaningful change through
             education, advocacy, research, and community-driven initiatives.
           </p>
@@ -22,7 +22,7 @@ export default function NewHero() {
           <div className="mt-8 flex w-full flex-col gap-4 sm:flex-row sm:gap-6 lg:mt-10 lg:gap-11">
             <Link
               href="/explore"
-              className="relative inline-flex h-[58px] w-full max-w-[285px] items-center justify-center rounded-full bg-[#f7afd0] text-[0.98rem] text-[#202a27] sm:h-[67px] sm:text-[1.08rem]"
+              className="relative inline-flex h-[58px] w-full max-w-none items-center justify-center rounded-full bg-[#f7afd0] text-[0.98rem] text-[#202a27] sm:max-w-[285px] sm:h-[67px] sm:text-[1.08rem]"
             >
               <img src="/stickers/Copy%20of%20Website%20Prototype.png" alt="" aria-hidden className="absolute -left-5 -top-6 w-12" />
               Join Our Community →
@@ -30,7 +30,7 @@ export default function NewHero() {
 
             <Link
               href="/volunteer-apply"
-              className="relative inline-flex h-[58px] w-full max-w-[285px] items-center justify-center rounded-full bg-[#fbf7f8] text-[0.98rem] text-[#202a27] sm:h-[67px] sm:text-[1.08rem]"
+              className="relative inline-flex h-[58px] w-full max-w-none items-center justify-center rounded-full bg-[#fbf7f8] text-[0.98rem] text-[#202a27] sm:max-w-[285px] sm:h-[67px] sm:text-[1.08rem]"
             >
               <img src="/stickers/Copy%20of%20Website%20Prototype%20(2).png" alt="" aria-hidden className="absolute -left-5 -top-6 w-12" />
               Explore Our Impact →

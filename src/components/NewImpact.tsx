@@ -22,12 +22,12 @@ function Stat({ value, suffix, label }: { value: number; suffix: string; label: 
 
 export default function NewImpact() {
   return (
-    <section className="relative z-10 overflow-visible bg-[#f8dce5] pb-24 pt-0" id="impact">
-      <div className="relative mx-auto min-h-[500px] max-w-[1420px] bg-[#f8dce5] pt-20">
+    <section className="relative z-10 overflow-visible bg-[#f8dce5] pb-16 pt-0" id="impact">
+      <div className="relative mx-auto min-h-[500px] max-w-[1420px] bg-[#f8dce5] px-4 pt-14 sm:px-6 lg:px-0 lg:pt-20">
         <div className="relative z-10">
-          <h2 className="font-seasons text-center text-[4rem] leading-none text-[#2e3a32]">Our Impact</h2>
+          <h2 className="font-seasons text-center text-[3rem] leading-none text-[#2e3a32] sm:text-[3.5rem] lg:text-[4rem]">Our Impact</h2>
 
-          <div className="relative z-10 mx-auto mt-16 grid max-w-[1340px] grid-cols-2 bg-white lg:grid-cols-4">
+          <div className="relative z-10 mx-auto mt-10 grid max-w-[1340px] grid-cols-1 bg-white sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
             {stats.map((s) => (
               <Stat key={s.label} value={s.value} suffix={s.suffix} label={s.label} />
             ))}
