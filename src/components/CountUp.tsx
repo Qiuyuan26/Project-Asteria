@@ -64,7 +64,7 @@ export default function CountUp({
   return (
     <span ref={ref} className={className}>
       {value.toLocaleString()}
-      {suffix}
+      {suffix && <span className="font-montserrat align-[0.12em] text-[0.46em] font-light">{suffix}</span>}
     </span>
   );
 }
